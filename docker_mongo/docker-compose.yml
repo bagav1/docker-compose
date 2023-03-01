@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  mongo:
+    build: .
+    container_name: mongo
+    image: mongo-cont:5.0.10
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: toor
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+    ports:
+      - 27018:27017
