@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+ php-fpm:
+  build:
+   context: ./php-fpm
+  container_name: OKAN__php-dev
+  restart: always
+  ports:
+   - ${PORT_LOCAL}:${PORT_DEFAULT}
+  volumes:
+   - ../public_html:/var/www/html:rw
+  networks:
+   - php-fpm
+   - db
+networks:
+ php-fpm:
+ db:
+  name: databases_databases 
+  external: true
+
