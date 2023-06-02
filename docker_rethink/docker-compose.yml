@@ -16,7 +16,8 @@ services:
         rethinkdb create --initial-password toor
         rethinkdb --bind all
     volumes:
-      - rethinkdb_data:/data
+      - db:/data
 
 volumes:
-  rethinkdb_data:
+  db:
+    driver: local
