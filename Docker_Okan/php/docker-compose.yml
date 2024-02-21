@@ -5,7 +5,7 @@ services:
   build:
    context: ./php-fpm
   container_name: OKAN__php-dev
-  restart: always
+  restart: on-failure
   ports:
    - ${PORT_LOCAL}:${PORT_DEFAULT}
   volumes:
@@ -16,6 +16,6 @@ services:
 networks:
  php-fpm:
  db:
-  name: databases_databases 
+  name: database-network 
   external: true
 

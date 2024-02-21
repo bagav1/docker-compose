@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  stt:
+#    build: ./
+    image: bagav1/whisper_jax_ffmpeg:latest
+    container_name: stt_baguv1
+    volumes:
+      - ./src:/app/src
+    command: /bin/sh -c "while sleep 1000; do :; done"

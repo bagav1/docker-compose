@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  n8nio:
+    # image: docker.n8n.io/n8nio/n8n
+    image: docker.n8n.io/n8nio/n8n:ai-beta
+    container_name: n8n
+    restart: on-failure
+    environment:
+      GENERIC_TIMEZONE: ${GENERIC_TIMEZONE}
+      TZ: ${TZ}
+      DB_TYPE: ${DB_TYPE}
+      DB_POSTGRESDB_SCHEMA: ${DB_POSTGRESDB_SCHEMA}
+      DB_POSTGRESDB_HOST: ${DB_POSTGRESDB_HOST}
+      DB_POSTGRESDB_PORT: ${DB_POSTGRESDB_PORT}
+      DB_POSTGRESDB_DATABASE: ${DB_POSTGRESDB_DATABASE}
+      DB_POSTGRESDB_USER: ${DB_POSTGRESDB_USER}
+      DB_POSTGRESDB_PASSWORD: ${DB_POSTGRESDB_PASSWORD}
+    ports:
+      - "${PORT_LOCAL}:${PORT_DEFAULT}"
+    volumes:
+      - "./n8n_data:/home/node/.n8n"
+    networks:
+      - default
+      - db
+
+networks:
+  default:
+    name: n8n-network
+  db:
+    name: database-network
+    external: true

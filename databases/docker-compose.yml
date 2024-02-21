@@ -18,7 +18,7 @@ services:
     - ./mysql/db:/var/lib/mysql
     - ./mysql/log:/var/lib/log
   networks:
-    - databases
+    - db
 
  postgres:
   image: postgres:${POSTGRES_VERSION}
@@ -35,7 +35,7 @@ services:
     - ./postgres/db:/var/lib/postgresql/data
     - ./postgres/log:/var/lib/postgresql/log
   networks:
-    - databases
+    - db
 
  firebird:
   image: kpsys/firebird
@@ -45,7 +45,7 @@ services:
   ports:
     - ${FIREBIRD_PORT_LOCAL}:${FIREBIRD_PORT_DEFAULT}
   networks:
-    - databases
+    - db
 
  mongo:
   image: mongo:${MONGO_VERSION}
@@ -60,7 +60,7 @@ services:
     - ./mongo/db:/data/db
     - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
   networks:
-    - databases
+    - db
 
  redis:
   image: redis/redis-stack-server:${REDIS_VERSION}
@@ -71,7 +71,7 @@ services:
   volumes:
     - ./redis/db:/data
   networks:
-    - databases
+    - db
    
  rethinkdb:
   image: rethinkdb:${RETHINKDB_VERSION}
@@ -90,7 +90,8 @@ services:
   volumes:
     - ./rethinkdb/db:/data
   networks:
-    - databases
+    - db
    
 networks:
-  databases:
+  db:
+    name: database-network

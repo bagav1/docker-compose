@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  motioneye:
+    image: "ghcr.io/motioneye-project/motioneye:edge"
+    container_name: motioneye
+    restart: always
+    hostname: motioneye
+    ports:
+      - "8765:8765"
+      - "8100-8150:8100-8150"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "./mnt/motioneye/etc:/etc/motioneye"
+      - "./mnt/motioneye/cameras:/var/lib/motioneye"

@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0.18
+    container_name: mosquitto
+    environment:
+      - TZ=America/Bogota
+    volumes:
+      - ./config:/mosquitto/config:rw
+      - ./data:/mosquitto/data:rw
+      - ./log:/mosquitto/log:rw
+    ports:
+      - 1883:1883
+      - 9001:9001
+    restart: unless-stopped
+    networks:
+      - default
+      - db
+
+volumes:
+  config:
+  data:
+  log:
+
+networks:
+  default:
+    name: mosquitto-network
+  db:
+    name: database-network
+    external: true
