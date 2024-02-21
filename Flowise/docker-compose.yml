@@ -3,7 +3,7 @@ version: '3.7'
 services:
   flowise:
     image: flowiseai/flowise
-    restart: always
+    restart: on-failure
     environment:
       PORT: ${PORT}
       CORS_ORIGINS: ${CORS_ORIGINS}
@@ -19,7 +19,7 @@ services:
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USER: ${DATABASE_USER}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      # DATABASE_SSL: ${DATABASE_SSL}
+      DATABASE_SSL: ${DATABASE_SSL}
       # DATABASE_SSL_KEY_BASE64: ${DATABASE_SSL_KEY_BASE64}
       APIKEY_PATH: ${APIKEY_PATH}
       SECRETKEY_PATH: ${SECRETKEY_PATH}

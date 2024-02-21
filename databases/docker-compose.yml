@@ -65,14 +65,13 @@ services:
     image: redis/redis-stack-server:${REDIS_VERSION}
     container_name: redis-dev
     restart: on-failure
-    # environment:
-    #   REDIS_PASSWORD: ${MY_REDIS_USER_PASSWORD}
+    environment:
+      REDIS_ARGS: "--requirepass ${MY_REDIS_USER_PASSWORD}"
     ports:
       - ${REDIS_PORT_LOCAL}:${REDIS_PORT_DEFAULT}
-    command: ["redis-server", "/etc/redis/redis.conf"]
     volumes:
       - ./redis/db:/data
-      - ./redis/redis.conf:/etc/redis/redis.conf
+      - ./redis/redis-stack.conf:/opt/redis-stack/redis-stack.conf
     networks:
       - db
 
