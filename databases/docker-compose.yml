@@ -35,17 +35,6 @@ services:
     networks:
       - db
 
-  firebird:
-    image: kpsys/firebird
-    container_name: firebird-dev
-    restart: on-failure
-    ports:
-      - ${FIREBIRD_PORT_LOCAL}:${FIREBIRD_PORT_DEFAULT}
-    volumes:
-      - ./firebird/db:/usr/local/firebird/data
-    networks:
-      - db
-
   mongo:
     image: mongo:${MONGO_VERSION}
     container_name: mongo-dev
