@@ -1,0 +1,19 @@
+services:
+  owncast:
+    image: "owncast/owncast:latest"
+    container_name: owncast
+    restart: on-failure
+    ports:
+      - "1935:1935"
+      - "1930:8080"
+      # ? Usuario y contraseña para el admin (defaulr: admin abc123)
+      # user: "admin"
+      # password: "Q=)z68irM+mWv-DWcL@g)E7|i\8{+*]*"
+    volumes:
+      - "./data:/app/data"
+    networks:
+      - default
+
+networks:
+  default:
+    name: owncast-network
